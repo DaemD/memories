@@ -5,6 +5,34 @@ export async function GET() {
     try {
         const { v4: uuidv4 } = await import('uuid');
 
+        // Ensure tables exist (Self-healing)
+        await db.query(`
+          CREATE TABLE IF NOT EXISTS memories (
+            id TEXT PRIMARY KEY,
+            date TEXT NOT NULL,
+            description TEXT,
+            mood TEXT
+          );
+        `);
+
+        await db.query(`
+          CREATE TABLE IF NOT EXISTS photos (
+            id TEXT PRIMARY KEY,
+            memory_id TEXT NOT NULL REFERENCES memories(id) ON DELETE CASCADE,
+            url TEXT NOT NULL
+          );
+        `);
+
+        await db.query(`
+          CREATE TABLE IF NOT EXISTS messages (
+            id SERIAL PRIMARY KEY,
+            memory_id TEXT NOT NULL REFERENCES memories(id) ON DELETE CASCADE,
+            role TEXT NOT NULL,
+            content TEXT NOT NULL,
+            timestamp TEXT NOT NULL
+          );
+        `);
+
         // Check if we already have data
         const countResult = await db.query('SELECT count(*) as count FROM memories');
         if (parseInt(countResult.rows[0].count) > 0) {
