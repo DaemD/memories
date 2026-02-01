@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card-bg: var(--card-bg);
+  --color-card-hover: var(--card-hover);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --font-lora: var(--font-lora);
+  --font-nunito: var(--font-nunito);
+}
+
+:root {
+  --background: #FDFBF7;
+  /* Creamy White */
+  --foreground: #4A4036;
+  /* Dark Warm Brown */
+
+  --card-bg: #FFFFFF;
+  --card-hover: #FFFDF9;
+
+  --accent: #D4C5B0;
+  /* Sand/Beige */
+  --accent-foreground: #2C2621;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #1C1917;
+    /* Warm Black */
+    --foreground: #E7E5E4;
+    /* Warm Grey */
+
+    --card-bg: #292524;
+    --card-hover: #352F2B;
+
+    --accent: #57534E;
+    --accent-foreground: #FAFAF9;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-lora), serif;
+}
+
+/* Custom utility for text balance if needed, though Tailwind v4 has text-balance built in? Check docs. Keeping safe. */
+@utility text-balance {
+  text-wrap: balance;
+}
