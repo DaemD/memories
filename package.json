@@ -9,9 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@libsql/client": "^0.17.0",
     "@types/pg": "^8.16.0",
-    "better-sqlite3": "^12.6.2",
     "clsx": "^2.1.1",
     "framer-motion": "^12.29.2",
     "lucide-react": "^0.563.0",
@@ -26,7 +24,6 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
-    "@types/better-sqlite3": "^7.6.13",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
@@ -35,5 +32,11 @@
     "eslint-config-next": "16.1.6",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "overrides": {
+    "react-palette": {
+      "react": "$react",
+      "react-dom": "$react-dom"
+    }
   }
 }
